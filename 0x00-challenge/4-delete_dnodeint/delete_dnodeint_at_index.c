@@ -9,6 +9,7 @@
  *
  * Return: 1 on success, -1 on failure
  */
+
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
 	dlistint_t *current = *head;
@@ -17,7 +18,6 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 
 	if (*head == NULL)
 		return (-1);
-
 	if (index == 0)
 	{
 		*head = current->next;
@@ -26,18 +26,15 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 		free(current);
 		return (1);
 	}
-
 	for (i = 0; current != NULL && i < index - 1; i++)
 		current = current->next;
 
 	if (current == NULL || current->next == NULL)
 		return (-1);
-
 	tmp = current->next->next;
 	free(current->next);
 	current->next = tmp;
 	if (tmp != NULL)
 		tmp->prev = current;
-
 	return (1);
 }
